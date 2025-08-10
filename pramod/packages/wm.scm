@@ -1,4 +1,4 @@
-(define-module (pramod packages wm)
+(define-module (packages wm)
   #:use-module (guix build-system gnu)
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (guix gexp)
@@ -10,7 +10,7 @@
 (define-public dwl
   (package
     (name "dwl")
-    (version "0.7")
+    (version "0.7esc")
     (source (local-file "/home/mod/src/dwl" #:recursive? #t))
     (build-system gnu-build-system)
     (arguments
