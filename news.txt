@@ -1,5 +1,5 @@
 (channel-news
  (version 0)
- (entry (tag "dwl introduced")
+ (entry (tag "dwl introduced"))
  (title (en "Introducing dwl))
  (body (en "custom dwl with esc super. to free alt for emacs")))
