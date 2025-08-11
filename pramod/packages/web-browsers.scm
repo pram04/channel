@@ -1,7 +1,7 @@
 (define-module (packages web-browsers)
   #:use-module (guix build-system qt)
   #:use-module (guix download)
-  #;use-module (guix gexp)
+  #:use-module (guix gexp)
   #:use-module (guix licenses)
   #:use-module (guix packages)
   #:use-module (gnu packages kde-frameworks)
