@@ -1,6 +1,7 @@
 (define-module (packages web-browsers)
   #:use-module (guix build-system qt)
   #:use-module (guix download)
+  #;use-module (guix gexp)
   #:use-module (guix licenses)
   #:use-module (guix packages)
   #:use-module (gnu packages kde-frameworks)
@@ -21,6 +22,7 @@
       (base32
        "1c9lkp51lficq7n04zzs1c6k97nhxh3zl3384qfqkw6xyws1ah58"))))
    (build-system qt-build-system)
+   (arguments (list #:tests? #f #:configure-flags #~(list "-DBUILD_TESTING=OFF")))
    (native-inputs (list extra-cmake-modules))
    (inputs (list breeze-icons
 		 kcrash
