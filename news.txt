@@ -1,6 +1,6 @@
 (channel-news
 	(version 0)
-	(entry (tag "pipewire" "roc-toolkit")
+	(entry (tag (list "pipewire" "roc-toolkit"))
 	(commit "d5ed6a68f528c00a6b0cc630752bee9c181464b6")
 	(title (en "intro pipewire-roc"))
 	(body (en "introducing pipewire-roc, pipewire with roc support")))
