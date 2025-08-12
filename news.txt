@@ -1,9 +1,9 @@
 (channel-news
 	(version 0)
-	(entry (tag "pipewire")
-	(commit "d5ed6a68f528c00a6b0cc630752bee9c181464b6")
-	(title (en "intro pipewire-roc"))
-	(body (en "introducing pipewire-roc, pipewire with roc support")))
+;	(entry (tag "pipewire")
+;	(commit "d5ed6a68f528c00a6b0cc630752bee9c181464b6")
+;	(title (en "intro pipewire-roc"))
+;	(body (en "introducing pipewire-roc, pipewire with roc support")))
 	(entry (tag "openfec" "pipewire")
 	(commit "ed53461c79c48410465827964d0a6e33f9f0fc0b")
 	(title (en "intro openfec"))
