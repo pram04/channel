@@ -7,7 +7,7 @@
 	(entry (tag "openfec")
 	(commit "ed53461c79c48410465827964d0a6e33f9f0fc0b")
 	(title (en "intro openfec"))
-	(body (en "openfec for pipewire"))
+	(body (en "openfec for pipewire")))
 	(entry (tag "dwl")
 	(title (en "Introducing dwl"))
 	(body (en "custom dwl with esc super. to free alt for emacs"))))
