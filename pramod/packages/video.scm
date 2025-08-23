@@ -17,12 +17,12 @@
 				      (filter (lambda (f) (or (string=? f "-Dcdda=enabled")
 							      (string=? f "-Ddvdnav=enabled")))
 					      #$flags)
-				      '("-Dcdda=disabled" "-Ddvdnav=disabled" "-Dalsa=enabled" "-Degl-wayland=enabled" "-Djavascript=enabled" "-Dpipewire=enabled" "-Dstrip=true" "-Dvaapi=enabled" "-Dvaapi-wayland=enabled" "-Dvulkan=enabled" "-Dwayland=enabled" "-Dcplugins=disabled" "-Ddrm=disabled" "-Ddvbin=disabled" "-Degl-drm=disabled" "-Diconv=disabled" "-Djack=disabled" "-Dlibarchive=disabled" "-Dlibbluray=disabled" "-Dmanpage-build=disabled" "-Dpulse=disabled" "-Dsdl2=disabled" "-Dsdl2-gamepad=disabled" "-Dsndio=disabled" "-Dx11=disabled" "-Dxv=disabled" "-Dzimg=disabled" "-Dzlib=disabled")))))
+				      ;;"-Dbuildtype=release"
+				      '("-Dalsa=enabled" "-Dcaca=disabled" "-Dcdda=disabled" "-Dcplugins=disabled" "-Ddrm=disabled" "-Ddvbin=disabled" "-Ddvdnav=disabled" "-Degl-drm=disabled" "-Degl-wayland=enabled" "-Diconv=disabled" "-Djack=disabled" "-Djavascript=enabled" "-Dlibarchive=disabled" "-Dlibbluray=disabled" "-Dmanpage-build=disabled" "-Dpipewire=enabled" "-Dpulse=disabled" "-Dsdl2=disabled" "-Dsdl2-gamepad=disabled" "-Dsixel=disabled" "-Dsndio=disabled" "-Dstrip=true" "-Dvaapi=enabled" "-Dvaapi-wayland=enabled" "-Dvulkan=enabled" "-Dwayland=enabled" "-Dx11=disabled" "-Dxv=disabled" "-Dzimg=disabled" "-Dzlib=disabled")))))
    (native-inputs
     (modify-inputs (package-native-inputs mpv)
 		   (delete "perl" "python-docutils")))
    (inputs
     (modify-inputs (package-inputs mpv)
 		   (prepend mujs)))))
-;;		   (append `(("mujs" ,mujs)))))))
 mpv-js
