@@ -91,7 +91,7 @@
     (list cmake
 	  curl
 	  `(,glib "bin")
-	  nss-certs
+;;	  nss-certs
 	  pkg-config
 	  wget))
    (inputs (list gengetopt
