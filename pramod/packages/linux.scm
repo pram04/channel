@@ -66,8 +66,7 @@
    (synopsis "Unofficial openFEC fork with various bug fixes")
    (description
     "FEC - Forward Erasure Correction. AL-FEC - Appliation Level FEC. UL-FEC - Upper Layers FEC. OpenFEC - IPR-free, open AL-FEC codes")
-   (license license:cecill))
-  )
+   (license license:cecill)))
 
 (define-public roc-toolkit
   (package
