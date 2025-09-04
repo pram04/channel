@@ -35,6 +35,13 @@
   #:use-module (guix gexp)
   #:use-module ((guix licenses) #:prefix license:))
 
+;; (define clearlinux-patches
+;;   (origin
+;;    (method git-fetch)
+;;    (uri (git-reference
+;; 	 (url "https://git.staropensource.de/StarOpenSource/Linux-Tachyon.git"
+;; (define-public 
+
 (define-public openfec
   (package
    (name "openfec")
@@ -132,7 +139,14 @@ The project is conceived as a swiss army knife for real-time streaming. It is de
      (list
       #:configure-flags
       #~(list (string-append "-Dudevrulesdir=" #$output "/lib/udev/rules.d")
-              "-Dman=enabled"
+              "-Dman=disabled"
+	      "-Dlibpulse=disabled"
+	      "-Dpipewire-jack=disabled"
+	      "-Djack=disabled"
+	      "-Dgstreamer=disabled"
+	      "-Dexamples=disabled"
+	      "-Dtests=disabled"
+	      "-Dflatpak=disabled"
               "-Drlimits-install=false"
               "-Dsession-managers=[]"
               "-Dsysconfdir=/etc"
