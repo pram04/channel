@@ -133,7 +133,7 @@ The project is conceived as a swiss army knife for real-time streaming. It is de
               (file-name (git-file-name name version))
               (sha256
                (base32
-                "11dw6ad3js7qca5vw6w2zx50cq9vi4lnzcvj7rs96dawp6glgibx"))))
+                "1da8xgygqyifcvxijyja1h4gr2hfac32wp1ls188lnwpj816x2m3"))))
     (build-system meson-build-system)
     (arguments
      (list
