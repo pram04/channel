@@ -124,7 +124,7 @@ The project is conceived as a swiss army knife for real-time streaming. It is de
 (define-public pipewire-roc
   (package
     (name "pipewire-roc")
-    (version "1.4.5")
+    (version "1.4.8")
     (source (origin
               (method git-fetch)
               (uri (git-reference
@@ -133,7 +133,7 @@ The project is conceived as a swiss army knife for real-time streaming. It is de
               (file-name (git-file-name name version))
               (sha256
                (base32
-                "1k3b412zspmx2v0finb5g8kns8xsynlnz48cmlcg7ch62av6kw75"))))
+                "11dw6ad3js7qca5vw6w2zx50cq9vi4lnzcvj7rs96dawp6glgibx"))))
     (build-system meson-build-system)
     (arguments
      (list
