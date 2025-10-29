@@ -33,6 +33,7 @@
 		 knotifications
 		 kxmlgui
 		 qtsvg
+		 qtwayland
 		 qtwebengine))
    (home-page "https://www.stoutner.com/privacy-browser-pc/")
    (synopsis "Web browser that respects your privacy")
