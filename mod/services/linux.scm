@@ -7,6 +7,6 @@
 
 (define-public linux/cxi3i716gkm
   (package (inherit (customize-linux
-		     #:linux linux
+		     #:linux linux-libre
 		     #:defconfig (local-file "defconfig")))
 	   (name "linux-cxi3i716gkm")))
