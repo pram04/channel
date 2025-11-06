@@ -1,6 +1,6 @@
 (define-module (mod services polkit)
   #:use-module (gnu services)
-  #:use-module (gnu services desktop)
+  #:use-module (gnu services dbus)
   #:use-module (guix gexp)
   #:export (polkit-shutdown-service))
 
