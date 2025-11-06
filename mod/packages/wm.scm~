@@ -4,6 +4,7 @@
   #:use-module (guix gexp)
   #:use-module (guix packages)
   #:use-module (guix utils)
+  #:use-module (gnu packages)
   #:use-module (gnu packages pkg-config)
   #:use-module (gnu packages wm))
   
@@ -23,9 +24,9 @@
            #~(modify-phases %standard-phases
                (delete 'configure))))   ; no configure
     (native-inputs
-     (list pkg-config))
+     (list pkg-config wlroots))
     (inputs
-     (list wlroots))
+     `(("wlroots" ,(specification->package "wlroots@0.18.2"))))
     (home-page "https://codeberg.org/dwl/dwl")
     (synopsis "Dynamic window manager for Wayland")
     (description

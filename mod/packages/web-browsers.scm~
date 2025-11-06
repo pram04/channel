@@ -33,8 +33,8 @@
 		 knotifications
 		 kxmlgui
 		 qtsvg
-		 qtwayland
 		 qtwebengine))
+   (propagated-inputs (list qtwayland))
    (home-page "https://www.stoutner.com/privacy-browser-pc/")
    (synopsis "Web browser that respects your privacy")
    (description

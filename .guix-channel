@@ -1,5 +1,4 @@
 (channel
  (version 0)
- (directory "pramod")
- (news-file "news.txt")
+ (news-file "etc/news.scm")
  (substitutes-directory "substitutes"))
