@@ -1,5 +1,6 @@
 (define-module (mod services linux)
   #:use-module (guix gexp)
+  #:use-module (guix packages)
   #:export (linux/cxi3i716gkm))
 
 (define-public linux/cxi3i716gkm
