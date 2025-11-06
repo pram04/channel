@@ -1,4 +1,4 @@
 (channel
  (version 0)
- (news-file "etc/news.scm")
+ (news-file "etc/news.txt")
  (substitutes-directory "substitutes"))
