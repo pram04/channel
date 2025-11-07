@@ -55,4 +55,5 @@ herd power-off
           (list `(directory #t "/etc/acpi" ,acpi-files)
                 ;; Run acpid in foreground for Shepherd supervision
                 `(exec (string-append (assoc-ref %outputs "out") "/bin/acpid -f"))))))
-    (description "ACPI daemon with power button shutdown handling."))))
+     (description "ACPI daemon with power button shutdown handling.")))))
+  
