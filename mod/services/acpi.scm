@@ -25,9 +25,7 @@ action=/etc/acpi/powerbtn.sh
 ")))))
 
 (define acpi-files
-  (file-union
-   "acpi-files"
-   (list powerbtn-script powerbtn-event)))
+  (append powerbtn-script powerbtn-event)) 
 
 ;; Define the acpid Shepherd service using file-union for files/directories
 (define acpid-service-type
