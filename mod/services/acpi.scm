@@ -46,11 +46,11 @@ herd power-off
 (define acpid-service
   (service
    (service-type
-    (name 'acpid)
+    (name 'acpid-powerbtn)
     (extensions
      (list
       ;; Deploy files under /etc/acpi
-      (service-extension shepherd-service-type
+      (service-extension shepherd-root-service-type
         (lambda (service)
           (list `(directory #t "/etc/acpi" ,acpi-files)
                 ;; Run acpid in foreground for Shepherd supervision
