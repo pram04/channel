@@ -1,4 +1,5 @@
 (use-modules (guix build utils)
+	     (gnu services)
  (gnu services base)
              (gnu services shepherd)
              (gnu packages base)
