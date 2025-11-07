@@ -7,7 +7,7 @@
 (define powerbtn-script
   (file-union
    "powerbtn-script"
-   `(("etc/acpi/powerbtn.sh"
+   `(("powerbtn.sh"
       ,(plain-file
         "powerbtn.sh"
         "#!/bin/sh
@@ -17,7 +17,7 @@ herd power-off
 (define powerbtn-event
   (file-union
    "powerbtn-event"
-   `(("etc/acpi/events/powerbtn"
+   `(("events/powerbtn"
       ,(plain-file
         "powerbtn"
         "event=button/power
