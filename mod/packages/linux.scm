@@ -33,7 +33,8 @@
   #:use-module (guix build-system scons)
   #:use-module (guix build utils)
   #:use-module (guix gexp)
-  #:use-module ((guix licenses) #:prefix license:))
+  #:use-module ((guix licenses)
+                #:prefix license:))
 
 ;; (define clearlinux-patches
 ;;   (origin
@@ -44,121 +45,72 @@
 
 (define-public openfec
   (package
-   (name "openfec")
-   (version "v1.4.2.12")
-   (source (origin
-            (method git-fetch)
-            (uri (git-reference
-                  (url "https://github.com/roc-streaming/openfec/")
-                  (commit version)))
-            (file-name (git-file-name name version))
-            (sha256
-             (base32
-              "18f9ja3riyxlwz09p0mqc2j64wn69lbwrqg5kchd27crl0pggqr8"))))
-   (build-system cmake-build-system)
-   (arguments
-    (list
-     #:configure-flags
-     #~(list "-DDEBUG:STRING=OFF")
-          #:tests? #f))
-   (native-inputs
-    (list curl
-	  `(,glib "bin")
-          pkg-config
-	  perl
-	  python
-	  wget))
-   (inputs (list ))
-   (home-page "https://openfec.inrialpes.fr/")
-   (synopsis "Unofficial openFEC fork with various bug fixes")
-   (description
-    "FEC - Forward Erasure Correction. AL-FEC - Appliation Level FEC. UL-FEC - Upper Layers FEC. OpenFEC - IPR-free, open AL-FEC codes")
-   (license license:cecill)))
-
-(define-public roc-toolkit
-  (package
-   (name "roc-toolkit")
-   (version "v0.4.0")
-   (source (origin
-            (method git-fetch)
-            (uri (git-reference
-                  (url "https://github.com/roc-streaming/roc-toolkit.git")
-                  (commit version)))
-            (file-name (git-file-name name version))
-            (sha256
-             (base32
-              "1w74a6dfpjfizc502c2j58dhsrjyira0pbcas7hd9p9lmw7any77"))))
-   (build-system scons-build-system)
-   (arguments
-    (list
-     #:scons-flags
-     #~(list "-Q" (string-append "--prefix=" (assoc-ref %outputs "out")))
-     #:tests? #f))
-   (native-inputs
-    (list cmake
-	  curl
-	  `(,glib "bin")
-;;	  nss-certs
-	  pkg-config
-	  wget))
-   (inputs (list gengetopt
-		 intltool
-		 libtool
-		 libsndfile
-		 libunwind
-		 libuv
-		 openfec
-		 openssl
-		 pulseaudio
-		 python
-		 ragel
-		 sox
-		 speexdsp))
-   (home-page "https://roc-streaming.org/")
-   (synopsis "Roc Toolkit implements real-time audio streaming over the network")
-   (description
-    "Basically, it is a network transport, highly specialized for the real-time streaming. You write the steam to the one end and read it from another end, and Roc handles all the complexities of delivering data in time and with no loss. Encoding, decoding, maintaining latency, adjusting clocks, restoring losses - all this happens transparently under the hood.
-The project is conceived as a swiss army knife for real-time streaming. It is designed to support a variety of network protocols, encodings, FEC schemes, and related features. Users can build custom configurations dedicated for specific use cases, while balancing quality, robustness, bandwidth, and compatibility.")
-   (license license:mpl2.0)))
+    (name "openfec")
+    (version "v1.4.2.12")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/roc-streaming/openfec/")
+             (commit version)))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "18f9ja3riyxlwz09p0mqc2j64wn69lbwrqg5kchd27crl0pggqr8"))))
+    (build-system cmake-build-system)
+    (arguments
+     (list
+      #:configure-flags
+      #~(list "-DDEBUG:STRING=OFF")
+      #:tests? #f))
+    (native-inputs (list curl
+                         `(,glib "bin")
+                         pkg-config
+                         perl
+                         python
+                         wget))
+    (inputs (list))
+    (home-page "https://openfec.inrialpes.fr/")
+    (synopsis "Unofficial openFEC fork with various bug fixes")
+    (description
+     "FEC - Forward Erasure Correction. AL-FEC - Appliation Level FEC. UL-FEC - Upper Layers FEC. OpenFEC - IPR-free, open AL-FEC codes")
+    (license license:cecill)))
 
 (define-public pipewire-roc
   (package
     (name "pipewire-roc")
     (version "1.4.8")
-    (source (origin
-              (method git-fetch)
-              (uri (git-reference
-                    (url "https://gitlab.freedesktop.org/pipewire/pipewire")
-                    (commit version)))
-              (file-name (git-file-name name version))
-              (sha256
-               (base32
-                "1da8xgygqyifcvxijyja1h4gr2hfac32wp1ls188lnwpj816x2m3"))))
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://gitlab.freedesktop.org/pipewire/pipewire")
+             (commit version)))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "1da8xgygqyifcvxijyja1h4gr2hfac32wp1ls188lnwpj816x2m3"))))
     (build-system meson-build-system)
     (arguments
      (list
       #:configure-flags
-      #~(list (string-append "-Dudevrulesdir=" #$output "/lib/udev/rules.d")
+      #~(list (string-append "-Dudevrulesdir="
+                             #$output "/lib/udev/rules.d")
               "-Dman=disabled"
-	      "-Dlibpulse=disabled"
-	      "-Dpipewire-jack=disabled"
-	      "-Djack=disabled"
-	      "-Dgstreamer=disabled"
-	      "-Dexamples=disabled"
-	      "-Dtests=disabled"
-	      "-Dflatpak=disabled"
+              "-Dlibpulse=disabled"
+              "-Dpipewire-jack=disabled"
+              "-Djack=disabled"
+              "-Dgstreamer=disabled"
+              "-Dexamples=disabled"
+              "-Dtests=disabled"
+              "-Dflatpak=disabled"
               "-Drlimits-install=false"
               "-Dsession-managers=[]"
               "-Dsysconfdir=/etc"
               "-Dsystemd=disabled"
-	      "-Ddocs=disabled"
-	      "-Droc=enabled")))
-    (native-inputs
-     (list doxygen
-	   `(,glib "bin")
-           pkg-config
-           python))
-           ;;python-docutils))
+              "-Ddocs=disabled"
+              "-Droc=enabled")))
+    (native-inputs (list doxygen
+                         `(,glib "bin") pkg-config python))
+    ;; python-docutils))
     (inputs (list alsa-lib
                   avahi
                   bluez
@@ -175,15 +127,15 @@ The project is conceived as a swiss army knife for real-time streaming. It is de
                   libfreeaptx
                   libsndfile
                   libusb
-		  libuv
-		  libva
-		  openfec
-                  openssl ; raop sink
+                  libuv
+                  libva
+                  openfec
+                  openssl ;raop sink
                   pulseaudio
-                  readline ; for pw-cli
-		  roc-toolkit
+                  readline ;for pw-cli
+                  roc-toolkit
                   sbc
-		  speexdsp
+                  speexdsp
                   vulkan-headers
                   vulkan-loader
                   webrtc-audio-processing))
@@ -199,3 +151,51 @@ with supporting Flatpak applications being the primary goal.  Alongside Wayland
 and Flatpak we expect PipeWire to provide a core building block for the future
 of Linux application development.")
     (license license:lgpl2.0+)))
+
+(define-public roc-toolkit
+  (package
+    (name "roc-toolkit")
+    (version "v0.4.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/roc-streaming/roc-toolkit.git")
+             (commit version)))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "1w74a6dfpjfizc502c2j58dhsrjyira0pbcas7hd9p9lmw7any77"))))
+    (build-system scons-build-system)
+    (arguments
+     (list
+      #:scons-flags
+      #~(list "-Q"
+              (string-append "--prefix="
+                             (assoc-ref %outputs "out")))
+      #:tests? #f))
+    (native-inputs (list cmake
+                         curl
+                         `(,glib "bin")
+                         ;; nss-certs
+                         pkg-config
+                         wget))
+    (inputs (list gengetopt
+                  intltool
+                  libtool
+                  libsndfile
+                  libunwind
+                  libuv
+                  openfec
+                  openssl
+                  pulseaudio
+                  python
+                  ragel
+                  sox
+                  speexdsp))
+    (home-page "https://roc-streaming.org/")
+    (synopsis
+     "Roc Toolkit implements real-time audio streaming over the network")
+    (description
+     "Basically, it is a network transport, highly specialized for the real-time streaming. You write the steam to the one end and read it from another end, and Roc handles all the complexities of delivering data in time and with no loss. Encoding, decoding, maintaining latency, adjusting clocks, restoring losses - all this happens transparently under the hood.
+The project is conceived as a swiss army knife for real-time streaming. It is designed to support a variety of network protocols, encodings, FEC schemes, and related features. Users can build custom configurations dedicated for specific use cases, while balancing quality, robustness, bandwidth, and compatibility.")
+    (license license:mpl2.0)))
