@@ -24,23 +24,14 @@ herd power-off
 action=/etc/acpi/powerbtn.sh
 ")))))
 
-(define acpi-files
-  (append powerbtn-script powerbtn-event)) 
-
-;; Define the acpid Shepherd service using file-union for files/directories
-(define acpid-service-type
-  (service-type
-   (name 'acpid)
-   (extensions
-    (list
-     (service-extension shepherd-service-type
-       (lambda (service)
-         (list
-          ;; Deploy all files from acpi-files as /etc/acpi and subdirectories
-          `(directory #t "/etc/acpi" ,acpi-files)
-          ;; Run acpid daemon in foreground with Shepherd supervision
-          `(exec (string-append (assoc-ref %outputs "out") "/bin/acpid -f")))))))
-   (description "ACPI daemon for power button handling.")))
+(define acpid-powerbtn-service
+  (shepherd-service
+   (auto-start? #t)
+   (documentation "ACPI power button handler")
+   (start #~(make-forkexec-constructor
+            (list (string-append #$acpid-bin "/bin/acpid") "-f")))))
 
 (define acpid-service
-  (service acpid-service-type))
+  (simple-service 'acpid-powerbtn
+                  shepherd-root-service-type
+                  (list acpid-powerbtn-service)))
