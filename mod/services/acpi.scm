@@ -1,9 +1,10 @@
-(use-modules (guix build utils)
-	     (gnu services)
- (gnu services base)
-             (gnu services shepherd)
-             (gnu packages base)
-	     (guix gexp))
+(define-module (mod services acpi)
+  #:use-module (gnu services)
+  #:use-module (gnu services base)
+  #:use-module (gnu services shepherd)
+  #:use-module (gnu packages base)
+  #:use-module (guix build utils)
+  #:use-module (guix gexp))
 
 ;; (define powerbtn-script
 ;;   (file-union
