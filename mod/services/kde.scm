@@ -1,7 +1,20 @@
 (define-module (mod services kde)
+  #:use-module (gnu packages kde)
+  #:use-module (gnu services shepherd)
   #:use-modules (guix gexp)
   #:export (kdeconnect-service))
 
-(define kdeconnect-service (simple-service 'kdeconnect-user-service
-					   user-processes-service-type
-					   (list "kdeconnectd")))
+(define kdeconnect-shepherd-service
+  (shepherd-service
+   (provision '(kdeconnect-daemon))
+   (requirement '(dbus))
+   (documentation "KDEConnect daemon")
+   (start #~(make-forkexec-constructor
+	     (list #$(file-append kdeconnect "/bin/kdeconnectd"))
+	     #:log-file "/var/log/kdeconnectd.log"))
+   (stop #~(make-kill-destructor))
+   (respawn? #t)))
+
+(define kdeconnect-service
+  (service shepherd-root-service-type
+	   (list kdeconnect-shepherd-service)))
