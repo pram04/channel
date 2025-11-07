@@ -51,7 +51,7 @@ herd power-off
     (extensions
      (list
       ;; Deploy files under /etc/acpi
-      (service-extension shepherd-root-service-type
+      (service-extension shepherd-service-type
         (lambda (service)
           (list `(directory #t "/etc/acpi" ,acpi-files)
                 ;; Run acpid in foreground for Shepherd supervision
