@@ -1,7 +1,7 @@
 (define-module (mod services kde)
   #:use-module (gnu packages kde)
   #:use-module (gnu services shepherd)
-  #:use-modules (guix gexp)
+  #:use-module (guix gexp)
   #:export (kdeconnect-service))
 
 (define kdeconnect-shepherd-service
