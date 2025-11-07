@@ -1,7 +1,8 @@
-(use-modules (gnu services base)
+(use-modules (guix build utils)
+ (gnu services base)
              (gnu services shepherd)
              (gnu packages base)
-             (guix build utils))
+	     (guix gexp))
 
 (define powerbtn-script
   (plain-file
