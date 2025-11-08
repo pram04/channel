@@ -20,27 +20,23 @@ action=/etc/acpi/powerbtn.sh \"%e\"\n"))
    "#!/bin/sh
 /sbin/shutdown -h now \"Power button pressed\"\n"))
 
-(define acpid-files-service
-  (simple-service 'install-acpid-powerbtn
-		  etc-service-type
-		  (list `("acpi/events/powerbtn" ,powerbtn-event-file)
-			`("acpi/powerbtn.sh" ,powerbtn-script-file))))
-
-(define acpid-shepherd-service
-  (shepherd-service
-   (provision '(acpid))
-   (documentation "Run acpid as a daemon")
-   (start #~(make-forkexec-constructor
-	     (list #$(file-append acpid "/sbin/acpid")
-		   "-f"
-		   "-c" "/etc/acpi/events")))
-   (stop #~(make-kill-destructor))
-   (respawn? #t)))
-
-;; (define acpid-service-type
-;;   (service-type
-;;    (name 'acpid)
-;;    (extensions
-;;     (list (service-extension shepherd-root-service-type
-;; 			     (const (list acpid-service-service)))))
-;;    (default-value #f)))
+(define acpid-powerbtn-service-type
+  (service-type
+   (name 'acpid-powerbtn)
+   (extensions
+    (list
+     (service-extension shepherd-root-service-type
+			(const (list shepherd-service
+				     (provision '(acpid))
+				     (documentation "Run acpid, handle power button")
+				     (start #~(make-forkexec-constructor
+					       (list #$(file-append acpid "/sbin/acpid")
+						     "-f"
+						     "-c" "/etc/acpi/events")))
+				     (stop #~(make-kill-destructor))
+				     (respawn? #t))))
+     (service-extension etc-service-type
+			(const (list
+				`("acpi/events/powerbtn" ,powerbtn-event-file)
+				`("acpi/powerbtn.sh" ,powerbtn-script-file))))))
+   (default-value #f)))
