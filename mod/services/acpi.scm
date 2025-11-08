@@ -1,7 +1,6 @@
 (define-module (mod services acpi)
   #:use-module (gnu services)
   #:use-module (gnu services base)
-  #:use-module (gnu services etc)
   #:use-module (gnu services shepherd)
   #:use-module (gnu packages base)
   #:use-module (gnu packages linux)
