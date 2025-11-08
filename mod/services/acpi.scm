@@ -3,6 +3,7 @@
   #:use-module (gnu services base)
   #:use-module (gnu services shepherd)
   #:use-module (gnu packages base)
+  #:use-module (gnu packages linux)
   #:use-module (guix build utils)
   #:use-module (guix gexp)
   #:export (acpid-powerbtn-service-type))
