@@ -23,6 +23,7 @@ action=/etc/acpi/powerbtn.sh \"%e\"\n"))
 (define acpid-powerbtn-service-type
   (service-type
    (name 'acpid-powerbtn)
+   (description "ACPID service with power button handling")
    (extensions
     (list
      (service-extension shepherd-root-service-type
