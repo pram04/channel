@@ -18,3 +18,11 @@
 		   "-c" "/etc/acpi/events")))
    (stop #~(make-kill-destructor))
    (respawn? #t)))
+
+(define acpid-service-type
+  (service-type
+   (name 'acpid)
+   (extensions
+    (list (service-extension shepherd-root-service-type
+			     (const (list acpid-service-service)))))
+   (default-value #f)))
