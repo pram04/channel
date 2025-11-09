@@ -36,7 +36,7 @@ action=/etc/acpi/powerbtn.sh \"%e\"\n"))
 						 "-f"
 						 "-c" "/etc/acpi/events"))))
 				 (stop #~(make-kill-destructor))
-				 (respawn? #t)))))
+				 (respawn? #t))))
      (service-extension etc-service-type
 			(lambda (service-config)
 			  (list
