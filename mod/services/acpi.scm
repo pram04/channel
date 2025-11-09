@@ -41,5 +41,5 @@ action=/etc/acpi/powerbtn.sh \"%e\"\n"))
 			(lambda (service-config)
 			  (list
 			   `("acpi/events/powerbtn" ,powerbtn-event-file)
-			   `(file "acpi/powerbtn.sh" ,powerbtn-script-file #:mode #o555))))
+			   (file "acpi/powerbtn.sh" ,powerbtn-script-file #:mode #o555))))
    (default-value #f)))))
