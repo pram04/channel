@@ -45,5 +45,5 @@ action=/etc/acpi/powerbtn.sh \"%e\"\n"))
 			(lambda (service-config)
 			  #~(begin
 			      (invoke "chmod" "+x" "/etc/acpi/powerbtn.sh")
-			      #t)))
+			      #t)))))
    (default-value #f)))
