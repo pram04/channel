@@ -42,4 +42,4 @@ action=/etc/acpi/powerbtn.sh \"%e\"\n"))
 			  (list
 			   `("acpi/events/powerbtn" ,powerbtn-event-file)
 			   `(file "acpi/powerbtn.sh" ,powerbtn-script-file #:mode #o555))))
-   (default-value #f)))
+   (default-value #f)))))
