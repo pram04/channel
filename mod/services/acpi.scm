@@ -19,7 +19,7 @@ action=/etc/acpi/powerbtn.sh \"%e\"\n"))
    "powerbtn.sh"
    #~(begin
        (display "Shutting down the system...\n")
-       (system* "sudo" "shutdown"))))
+       (system* "sudo" "/run/current-system/profile/sbin/shutdown"))))
 
 (define acpid-powerbtn-service-type
   (service-type
