@@ -39,12 +39,6 @@ action=/etc/acpi/powerbtn.sh \"%e\"\n"))
 				 (respawn? #t)))))
      (service-extension etc-service-type
 			(lambda (service-config)
-			  (let ((files `(("acpi/events/powerbtn" ,powerbtn-event-file)
-					 ("acpi/powerbtn.sh" ,powerbtn-script-file))))
-			    files
-			    (add-after 'install 'chmod-powerbtn
-			      (lambda* (#:key output #:allow-other-keys)
-				(let ((script-path (string-append output "/etc/acpi/powerbtn.sh")))
-				  (invoke "chmod" "+x" script-path)
-				  #t))))))))
+			  (list `(("acpi/events/powerbtn" ,powerbtn-event-file)
+				  `("acpi/powerbtn.sh" ,powerbtn-script-file)))))))
    (default-value #f)))
