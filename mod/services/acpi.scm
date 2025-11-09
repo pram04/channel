@@ -32,14 +32,17 @@ action=/etc/acpi/powerbtn.sh \"%e\"\n"))
 				 (provision '(acpid))
 				 (documentation "Run acpid and handle power button")
 				 (start #~(make-forkexec-constructor
-					   (list #$(file-append acpid "/sbin/acpid")
+					   (list "/bin/sh" "-c"
+						 (string-append
+						  "chmod +x /etc/acpi/powerbtn.sh && "
+						  #$(file-append acpid "/sbin/acpid")
 						 "-f"
-						 "-c" "/etc/acpi/events")))
+						 "-c" "/etc/acpi/events"))))
 				 (stop #~(make-kill-destructor))
 				 (respawn? #t)))))
      (service-extension etc-service-type
 			(lambda (service-config)
 			  (list
 			   `("acpi/events/powerbtn" ,powerbtn-event-file)
-			   `("acpi/powerbtn.sh" ,powerbtn-script-file #:mode #o555))))
+			   `("acpi/powerbtn.sh" ,powerbtn-script-file))))
    (default-value #f)))))
