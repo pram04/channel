@@ -45,6 +45,6 @@ action=/etc/acpi/powerbtn.sh \"%e\"\n"))
      (service-extension activation-service-type
 			(lambda (service-config)
 			  #~(begin
-			      (chmod #"/etc/acpi/powerbtn.sh" #o555)
+			      (chmod "/etc/acpi/powerbtn.sh" #o555)
 			      #t)))))
    (default-value #f)))
