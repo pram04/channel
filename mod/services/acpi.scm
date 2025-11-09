@@ -41,9 +41,9 @@ action=/etc/acpi/powerbtn.sh \"%e\"\n"))
 				 (start #~(make-forkexec-constructor
 					   (list #$(file-append acpid "/sbin/acpid")
 						 "-f"
-						 "-c" "/etc/acpi/events"))))
+						 "-c" "/etc/acpi/events")))
 				 (stop #~(make-kill-destructor))
-				 (respawn? #t))))
+				 (respawn? #t)))))
      (service-extension etc-service-type
 			(lambda (service-config)
 			  (list
