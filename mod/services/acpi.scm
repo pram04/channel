@@ -40,6 +40,10 @@ action=/etc/acpi/powerbtn.sh \"%e\"\n"))
      (service-extension etc-service-type
 			(lambda (service-config)
 			  (list `(("acpi/events/powerbtn" ,powerbtn-event-file)
-				  `("acpi/powerbtn.sh" ,powerbtn-script-file))))
-			(invoke "chmod" "+x" "/etc/acpi/events/powerbtn.sh"))))
+				  `("acpi/powerbtn.sh" ,powerbtn-script-file)))))
+     (service-extension activation-service-type
+			(lambda (service-config)
+			  #~(begin
+			      (invoke "chmod" "+x" "/etc/acpi/powerbtn.sh")
+			      #t)))
    (default-value #f)))
