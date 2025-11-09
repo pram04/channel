@@ -17,8 +17,8 @@ action=/etc/acpi/powerbtn.sh \"%e\"\n"))
 (define powerbtn-script-file
   (plain-file
    "powerbtn.sh"
-   "#!/bin/sh\n"
-   "/run/current-system/profile/sbin/shutdown -h now \"Power button pressed\"\n"))
+   "#!/bin/sh\n
+   /run/current-system/profile/sbin/shutdown -h now \"Power button pressed\"\n"))
 
 (define acpid-powerbtn-service-type
   (service-type
@@ -40,5 +40,6 @@ action=/etc/acpi/powerbtn.sh \"%e\"\n"))
      (service-extension etc-service-type
 			(lambda (service-config)
 			  (list `(("acpi/events/powerbtn" ,powerbtn-event-file)
-				  `("acpi/powerbtn.sh" ,powerbtn-script-file)))))))
+				  `("acpi/powerbtn.sh" ,powerbtn-script-file))))
+			(invoke "chmod" "+x" "/etc/acpi/events/powerbtn.sh"))))
    (default-value #f)))
