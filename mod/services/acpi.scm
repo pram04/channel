@@ -39,8 +39,9 @@ action=/etc/acpi/powerbtn.sh \"%e\"\n"))
 				 (respawn? #t)))))
      (service-extension etc-service-type
 			(lambda (service-config)
-			  (list `(("acpi/events/powerbtn" ,powerbtn-event-file)
-				  `("acpi/powerbtn.sh" ,powerbtn-script-file)))))
+			  (list
+			   `("acpi/events/powerbtn" ,powerbtn-event-file)
+			   `("acpi/powerbtn.sh" ,powerbtn-script-file))))
      (service-extension activation-service-type
 			(lambda (service-config)
 			  #~(begin
