@@ -36,8 +36,7 @@ action=/etc/acpi/powerbtn.sh \"%e\"\n"))
 						 (string-append
 						  "chmod +x /etc/acpi/powerbtn.sh && "
 						  #$(file-append acpid "/sbin/acpid")
-						 "-f"
-						 "-c" "/etc/acpi/events"))))
+						 " -f -c /etc/acpi/events"))))
 				 (stop #~(make-kill-destructor))
 				 (respawn? #t)))))
      (service-extension etc-service-type
