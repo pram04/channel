@@ -15,9 +15,12 @@
 action=/etc/acpi/powerbtn.sh \"%e\"\n"))
 
 (define powerbtn-script-file
-  (program-file
-   "powerbtn.sh"
-"(system \"/run/current-system/profile/sbin/shutdown -h now \\\"Power button pressed\\\"\")"))   
+  (executable-file
+   (plain-file
+    "powerbtn.sh"
+    #~(string-append
+       "#!/bin/sh\n"
+       "/run/current-system/profile/sbin/shutdown -h now \"Power button pressed\"\n"))))
 
 (define acpid-powerbtn-service-type
   (service-type
