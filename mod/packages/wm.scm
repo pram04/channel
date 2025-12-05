@@ -45,14 +45,17 @@
 		(invoke "sed" "-i" "s/^#define MODKEY WLR_MODIFIER_ALT/#define MODKEY WLR_MODIFIER_LOGO/" config-def-h)
 		(format #t "Modified config.mk and config.def.h:~%\n")
 		(system* "tail" "-10" config-mk)
-		(system* "grep" "MODKEY" config-def-h))
+		(system* "grep" "#define MODKEY" config-def-h))
 	      #t)))))
     (native-inputs (list pkg-config wayland-protocols))
     (inputs (list libinput libxcb wayland wlroots-0.18 libxkbcommon xcb-util-wm xorg-server-xwayland))
     (home-page "https://codeberg.org/dwl/dwl")
-    (synopsis "Dynamic window manager for Wayland")
+    (synopsis "Dynamic window manager for Wayland modified")
     (description
-     "@command{dwl} is a compact, hackable compositor for Wayland based on
+     "The following modifications were made to the dwl. The MODKEY has been changed from WLR_MODIFIER_ALT
+to WLR_MODIFIER_LOGO coz the former was needed for emacs. Enabled XWayland coz, many still breaks
+with wayland. The original description follows.
+@command{dwl} is a compact, hackable compositor for Wayland based on
 wlroots.  It is intended to fill the same space in the Wayland world that dwm
 does in X11, primarily in terms of philosophy, and secondarily in terms of
 functionality.  Like dwm, dwl is easy to understand and hack on, due to a
