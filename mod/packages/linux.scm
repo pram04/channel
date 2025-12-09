@@ -77,80 +77,33 @@
 
 (define-public pipewire-roc
   (package
-    (name "pipewire-roc")
-    (version "1.4.8")
-    (source
-     (origin
-       (method git-fetch)
-       (uri (git-reference
-             (url "https://gitlab.freedesktop.org/pipewire/pipewire")
-             (commit version)))
-       (file-name (git-file-name name version))
-       (sha256
-        (base32 "1da8xgygqyifcvxijyja1h4gr2hfac32wp1ls188lnwpj816x2m3"))))
-    (build-system meson-build-system)
-    (arguments
-     (list
-      #:configure-flags
-      #~(list (string-append "-Dudevrulesdir="
-                             #$output "/lib/udev/rules.d")
-              "-Dman=disabled"
-              "-Dlibpulse=disabled"
-              "-Dpipewire-jack=disabled"
-              "-Djack=disabled"
-              "-Dgstreamer=disabled"
-              "-Dexamples=disabled"
-              "-Dtests=disabled"
-              "-Dflatpak=disabled"
-              "-Drlimits-install=false"
-              "-Dsession-managers=[]"
-              "-Dsysconfdir=/etc"
-              "-Dsystemd=disabled"
-              "-Ddocs=disabled"
-              "-Droc=enabled")))
-    (native-inputs (list doxygen
-                         `(,glib "bin") pkg-config python))
-    ;; python-docutils))
-    (inputs (list alsa-lib
-                  avahi
-                  bluez
-                  dbus
-                  eudev
-                  ffmpeg
-                  gst-plugins-base
-                  gstreamer
-                  jack-2
-                  ldacbt
-                  libcamera
-                  libdrm
-                  libfdk
-                  libfreeaptx
-                  libsndfile
-                  libusb
-                  libuv
-                  libva
-                  openfec
-                  openssl ;raop sink
-                  pulseaudio
-                  readline ;for pw-cli
-                  roc-toolkit
-                  sbc
-                  speexdsp
-                  vulkan-headers
-                  vulkan-loader
-                  webrtc-audio-processing))
-    (home-page "https://pipewire.org/")
-    (synopsis "Server and user space API to deal with multimedia pipelines")
-    (description
-     "PipeWire is a project that aims to greatly improve handling of audio and
-video under Linux.  It aims to support the usecases currently handled by both
-PulseAudio and Jack and at the same time provide same level of powerful handling
-of Video input and output.  It also introduces a security model that makes
-interacting with audio and video devices from containerized applications easy,
-with supporting Flatpak applications being the primary goal.  Alongside Wayland
-and Flatpak we expect PipeWire to provide a core building block for the future
-of Linux application development.")
-    (license license:lgpl2.0+)))
+   (inherit pipewire)
+   (name "pipewire-roc")
+   (arguments
+    (list
+     #:configure-flags
+     #~(list (string-append "-Dudevrulesdir="
+			    #$output "/lib/udev/rules.d")
+	     "-Dman=disabled"
+             "-Dlibpulse=disabled"
+             "-Dpipewire-jack=disabled"
+             "-Djack=disabled"
+             "-Dgstreamer=disabled"
+             "-Dexamples=disabled"
+             "-Dtests=disabled"
+             "-Dflatpak=disabled"
+             "-Drlimits-install=false"
+             "-Dsession-managers=[]"
+             "-Dsysconfdir=/etc"
+             "-Dsystemd=disabled"
+             "-Ddocs=disabled"
+             "-Droc=enabled")))
+   (inputs (modify-inputs (package-inputs pipewire)
+			  (prepend libuv libva openfec roc-toolkit speexdsp)))
+   (description
+    "Following changes were done to pipewire
+1) disabled pulse, jack, gstreamer, examples, tests, flatpak, docs
+2) enabled roc")))
 
 (define-public roc-toolkit
   (package
