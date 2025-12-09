@@ -75,10 +75,10 @@
      "FEC - Forward Erasure Correction. AL-FEC - Appliation Level FEC. UL-FEC - Upper Layers FEC. OpenFEC - IPR-free, open AL-FEC codes")
     (license license:cecill)))
 
-(define-public pipewire-roc
+(define-public pipewire-mod
   (package
    (inherit pipewire)
-   (name "pipewire-roc")
+   (name "pipewire-mod")
    (arguments
     (list
      #:configure-flags
